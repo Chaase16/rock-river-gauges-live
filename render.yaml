@@ -4,7 +4,7 @@ services:
     runtime: python
     plan: free
     buildCommand: pip install -r requirements.txt
-    startCommand: streamlit run rock_river_dashboard_v5_4.py --server.address 0.0.0.0 --server.port $PORT --server.headless true
+    startCommand: streamlit run rock_river_dashboard_v5_5.py --server.address 0.0.0.0 --server.port $PORT --server.headless true
     envVars:
       - key: APP_PASSWORD
         sync: false
