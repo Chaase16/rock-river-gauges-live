@@ -13,6 +13,40 @@ exec(
 )
 
 st.divider()
+st.subheader("🗺️ Rock River drainage basin")
+st.caption(
+    "This shows the full Rock River watershed from Wisconsin through northern Illinois "
+    "to the Mississippi River. The live gauge dashboard above is focused mainly on the "
+    "Wisconsin/upper-basin gauges."
+)
+
+ROCK_BASIN_MAP_URL = "https://upload.wikimedia.org/wikipedia/commons/d/d4/Rockilrivermap.png"
+NWS_ROCK_BASIN_URL = "https://www.weather.gov/lot/hydrology_basins"
+WIKIMEDIA_MAP_SOURCE_URL = "https://commons.wikimedia.org/wiki/File:Rockilrivermap.png"
+
+st.image(
+    ROCK_BASIN_MAP_URL,
+    caption=(
+        "Rock River watershed (Wisconsin–Illinois). Map by Kmusser, based on USGS data, "
+        "CC BY-SA 2.5."
+    ),
+    use_container_width=True,
+)
+
+basin_col1, basin_col2 = st.columns(2)
+with basin_col1:
+    st.link_button(
+        "Official NWS Rock River Basin overview",
+        NWS_ROCK_BASIN_URL,
+        use_container_width=True,
+    )
+with basin_col2:
+    st.link_button(
+        "Map source / attribution",
+        WIKIMEDIA_MAP_SOURCE_URL,
+        use_container_width=True,
+    )
+
 st.subheader("🌧️ Rainfall reports")
 st.caption(
     "Use these links to see where rain actually fell across the Rock River watershed. "
