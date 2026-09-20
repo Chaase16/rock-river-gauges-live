@@ -142,7 +142,7 @@ def request_items(base, collection, site_ids, *, period=None):
     req = Request(
         url,
         headers={
-            "User-Agent": "RockRiverLiveDashboard/3.0",
+            "User-Agent": "RockRiverLiveDashboard/4.0",
             "Accept": "application/json",
             "Cache-Control": "no-cache",
             "Pragma": "no-cache",
@@ -180,9 +180,12 @@ def fetch_chunk(collection, site_ids, *, period=None):
     errors = []
     for base in API_BASES:
         try:
-            return request_items(
+            payload, used_url = request_items(
                 base, collection, site_ids, period=period
             )
+            # fetch_chunk always returns a 3-tuple:
+            # (payload, list_of_urls_used, list_of_failed_sites)
+            return payload, [used_url], []
         except Exception as exc:
             errors.append(f"{base}: {exc}")
 
@@ -457,7 +460,7 @@ df = pd.DataFrame(rows)
 st.title("🦆 Rock River Live")
 st.caption(
     "Official USGS Water Data API • auto-refreshes every 5 minutes • "
-    "USGS transmission timing varies by gauge"
+    "USGS transmission timing varies by gauge • build 4"
 )
 
 leb = df[df["USGS"] == LEBANON_SITE].iloc[0]
