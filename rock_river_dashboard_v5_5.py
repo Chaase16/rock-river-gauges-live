@@ -1,8 +1,16 @@
+from pathlib import Path
 import streamlit as st
 
-# Keep the validated 5.4 dashboard intact, including the Lebanon hydrograph,
-# USGS live data, East Branch/Theresa Marsh handling, and gauge tables.
-import rock_river_dashboard_v5_4 as app
+# Execute the validated 5.4 dashboard on every Streamlit rerun instead of
+# importing it as a module. Normal Python imports are cached, which caused the
+# base dashboard to disappear on later reruns while the 5.5 additions remained.
+base_app_path = Path(__file__).with_name("rock_river_dashboard_v5_4.py")
+base_source = base_app_path.read_text(encoding="utf-8")
+base_source = base_source.replace('BUILD = "5.4"', 'BUILD = "5.5"', 1)
+exec(
+    compile(base_source, str(base_app_path), "exec"),
+    {"__name__": "__main__", "__file__": str(base_app_path)},
+)
 
 st.divider()
 st.subheader("🌧️ Rainfall reports")
