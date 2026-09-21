@@ -6,9 +6,11 @@ import streamlit.components.v1 as components
 # Run the complete 5.7 dashboard, then add installable web-app metadata.
 source_path = Path(__file__).with_name("rock_river_dashboard_v5_7.py")
 source = source_path.read_text(encoding="utf-8")
-source = source.replace('BUILD = \"5.7\"', 'BUILD = \"5.8\"')
-source = source.replace('RockRiverLive/5.7', 'RockRiverLive/5.8')
-source = source.replace('Build 5.7 •', 'Build 5.8 •')
+
+# v5.7 itself patches the inherited v5.6/v5.4 source. Replacing the version
+# token globally here makes the visible header/footer and API user-agent all
+# report the actual deployed build number.
+source = source.replace("5.7", "5.8")
 
 exec(
     compile(source, str(source_path), "exec"),
