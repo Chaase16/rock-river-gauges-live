@@ -1,0 +1,21 @@
+{
+  "id": "/",
+  "name": "Rock River Live",
+  "short_name": "Rock River",
+  "description": "Live Rock River gauges, hydrographs, rainfall resources, flood impacts, and watershed maps.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f4f8fb",
+  "theme_color": "#0b4f6c",
+  "orientation": "any",
+  "categories": ["weather", "navigation", "utilities"],
+  "icons": [
+    {
+      "src": "/app/static/rock-river-live.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
